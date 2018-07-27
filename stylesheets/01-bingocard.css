@@ -1,0 +1,98 @@
+.bingo {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.bingocard {
+  height: 550px;
+  min-width: 550px;
+  max-width: 550px;
+  padding: 50px;
+  background: lavender;
+}
+
+.bingocard-square {
+  font-family: 'Dosis', sans-serif;
+  width: 100px;
+  height: 100px;
+  background: lavenderblush;
+  border-color: black;
+  border: solid 5px;
+  float: left;
+  text-align: center;
+  cursor: pointer;
+  overflow-wrap: break-word;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.bingocard-square:hover {
+  background: khaki;
+  border-color: goldenrod;
+}
+
+.bingocard-selected {
+  font-family: 'Dosis', sans-serif;
+  font-weight: 600;
+  width: 100px;
+  height: 100px;
+  background: darkslateblue;
+  border-color: black;
+  border: solid 5px;
+  color: aquamarine;
+  float: left;
+  text-align: center;
+  cursor: pointer;
+  overflow-wrap: break-word;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.bingocard-selected:hover {
+  background: blue;
+  border-color: white;
+}
+
+.title {
+  top: 50px;
+  position: absolute;
+  font:normal 30pt Arial;
+  color:#FFFFFF;
+  text-shadow: 0 1px 0 #ccc,
+  0 2px 0 #c9c9c9,
+  0 3px 0 #bbb,
+  0 4px 0 #b9b9b9,
+  0 5px 0 #aaa,
+  0 6px 1px rgba(0,0,0,.1),
+  0 0 5px rgba(0,0,0,.1),
+  0 1px 3px rgba(0,0,0,.3),
+  0 3px 5px rgba(0,0,0,.2),
+  0 5px 10px rgba(0,0,0,.25),
+  0 10px 10px rgba(0,0,0,.2),
+  0 20px 20px rgba(0,0,0,.15);
+}
+
+.wrapper {
+  overflow: hidden;
+}
+
+.sliding-background {
+  background: url("../rainbow2.jpg") repeat-x;
+  height: 50px;
+  width: 5076px;
+  animation: slide 60s linear infinite;
+}
+
+@keyframes slide{
+  0%{
+    transform: translate3d(0, 0, 0);
+  }
+  100%{
+    transform: translate3d(-1692px, 0, 0);
+  }
+}
