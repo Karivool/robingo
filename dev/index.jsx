@@ -104,7 +104,7 @@ let bingoCard = React.createClass({
 
     return (
       <div className="bingo">
-        <div className="title">BINGO!</div>
+        <div className="title">RO BINGO</div>
         <div className="bingocard">
           { bingoOptions.map(function (square, idx){
             return <p

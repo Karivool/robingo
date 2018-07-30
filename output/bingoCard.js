@@ -161,7 +161,7 @@
 	      _react2.default.createElement(
 	        "div",
 	        { className: "title" },
-	        "BINGO!"
+	        "RO BINGO"
 	      ),
 	      _react2.default.createElement(
 	        "div",
@@ -22109,7 +22109,8 @@
 	  "CCing other distros in an attempt to get a response",
 	  "Confusion at the given solution",
 	  "Radio silence when prompted for a response",
-	  "No acknowledgement of issue resolution given",
+	  "Acknowledgement of issue resolution not given",
+	  "No thanks given for helping fix RO",
 	  "Issue is caused by support rep’s error",
 	  "Issue can be resolved through the RO Guidelines doc",
 	  "Support rep makes the issue worse in solving attempt",
@@ -22124,8 +22125,7 @@
 	  "Vague, unhelpful e-mail title",
 	  "Vague, unhelpful e-mail body",
 	  "Help request initially sent to the wrong distro",
-	  "",
-	  "",
+	  "Issue resolves itself before RO does anything",
 	];
 
 	module.exports = BingoDefault;
