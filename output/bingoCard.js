@@ -67,10 +67,24 @@
 	    return {
 	      bingoSquares: [],
 	      squareCount: 0,
-	      bingoValues: this.setMultipleFalse(false),
-	      bingoOptions: this.shuffle(options),
+	      bingoOptions: this.shuffleCheck(options),
+	      bingoValues: this.setCheck(),
 	      isBingo: false
 	    };
+	  },
+	  setCheck: function setCheck(val) {
+	    var checkVals = JSON.parse(localStorage.getItem('checkedVals'));
+	    if (checkVals == null) {
+	      checkVals = this.setMultipleFalse(false);
+	    };
+	    return checkVals;
+	  },
+	  shuffleCheck: function shuffleCheck(options) {
+	    var setSquares = JSON.parse(localStorage.getItem('setSquares'));
+	    if (setSquares == null) {
+	      setSquares = this.shuffle(options);
+	    }
+	    return setSquares;
 	  },
 	  shuffle: function shuffle(arr) {
 	    for (var idx = arr.length; idx; idx--) {
@@ -79,6 +93,15 @@
 	      arr[idx - 1] = _ref[0];
 	      arr[rand] = _ref[1];
 	    }
+	    localStorage.setItem('setSquares', JSON.stringify(arr));
+	    return arr;
+	  },
+	  shuffleAgain: function shuffleAgain(arr) {
+	    this.shuffle(arr);
+	    var vals = this.setMultipleFalse(false);
+	    this.setState({
+	      bingoOptions: arr, bingoValues: vals
+	    });
 	    return arr;
 	  },
 	  setMultipleFalse: function setMultipleFalse(val) {
@@ -86,6 +109,7 @@
 	    for (var times = 0; times < 25; times++) {
 	      array.push(val);
 	    }
+	    localStorage.setItem('checkedVals', JSON.stringify(array));
 	    return array;
 	  },
 	  squareClicked: function squareClicked(idx) {
@@ -105,7 +129,7 @@
 	        isBingo: this.bingoCheck()
 	      });
 	    };
-
+	    localStorage.setItem('checkedVals', JSON.stringify(valChange));
 	    this.setState({
 	      bingoValues: valChange
 	    });
@@ -158,6 +182,14 @@
 	    return _react2.default.createElement(
 	      "div",
 	      { className: "bingo" },
+	      _react2.default.createElement(
+	        "div",
+	        {
+	          className: "shuffle",
+	          onClick: this.shuffleAgain.bind(this, bingoOptions)
+	        },
+	        "Shuffle"
+	      ),
 	      _react2.default.createElement(
 	        "div",
 	        { className: "title" },
@@ -22105,13 +22137,13 @@
 	  "Email about the same issue twice in one day",
 	  "No Order ID in the subject line",
 	  "No Order ID in the email at all",
-	  "Issue is not actually an issue but support rep’s oversight",
+	  "Issue is not actually an issue but support rep's oversight",
 	  "CCing other distros in an attempt to get a response",
 	  "Confusion at the given solution",
 	  "Radio silence when prompted for a response",
 	  "Acknowledgement of issue resolution not given",
 	  "No thanks given for helping fix RO",
-	  "Issue is caused by support rep’s error",
+	  "Issue is caused by support rep's error",
 	  "Issue can be resolved through the RO Guidelines doc",
 	  "Support rep makes the issue worse in solving attempt",
 	  "RO is the wrong group for the issue to solve",
@@ -22121,7 +22153,7 @@
 	  "All 3 currencies (USD, GBP, EUR) in the RO",
 	  "RO is missing screenshots where it would be useful",
 	  "Order ID has to be transcribed from screenshot",
-	  "Flood of RO’s related to newly introduced bug",
+	  "Flood of RO's related to newly introduced bug",
 	  "Vague, unhelpful e-mail title",
 	  "Vague, unhelpful e-mail body",
 	  "Help request initially sent to the wrong distro",

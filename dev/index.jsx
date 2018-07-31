@@ -12,10 +12,26 @@ let bingoCard = React.createClass({
     return {
       bingoSquares: [],
       squareCount: 0,
-      bingoValues: this.setMultipleFalse(false),
-      bingoOptions: this.shuffle(options),
+      bingoOptions: this.shuffleCheck(options),
+      bingoValues: this.setCheck(),
       isBingo: false,
     };
+  },
+
+  setCheck(val) {
+    let checkVals = JSON.parse(localStorage.getItem('checkedVals'));
+    if (checkVals == null) {
+      checkVals = this.setMultipleFalse(false);
+    };
+    return checkVals;
+  },
+
+  shuffleCheck(options) {
+    let setSquares = JSON.parse(localStorage.getItem('setSquares'));
+    if (setSquares == null) {
+      setSquares = this.shuffle(options);
+    }
+    return setSquares;
   },
 
   shuffle(arr) {
@@ -23,14 +39,25 @@ let bingoCard = React.createClass({
       let rand = Math.floor(Math.random() * idx);
       [arr[idx - 1], arr[rand]] = [arr[rand], arr[idx - 1]];
     }
+    localStorage.setItem('setSquares', JSON.stringify(arr));
     return arr;
   },
 
-  setMultipleFalse (val) {
+  shuffleAgain(arr) {
+    this.shuffle(arr);
+    let vals = this.setMultipleFalse(false);
+    this.setState({
+      bingoOptions: arr, bingoValues: vals
+    });
+    return arr;
+  },
+
+  setMultipleFalse(val) {
     let array = [];
     for (let times = 0; times < 25; times++) {
       array.push(val);
     }
+    localStorage.setItem('checkedVals', JSON.stringify(array));
     return array;
   },
 
@@ -51,7 +78,7 @@ let bingoCard = React.createClass({
         isBingo: this.bingoCheck()
       });
     };
-
+    localStorage.setItem('checkedVals', JSON.stringify(valChange));
     this.setState({
       bingoValues: valChange
     });
@@ -104,6 +131,11 @@ let bingoCard = React.createClass({
 
     return (
       <div className="bingo">
+        <div
+          className="shuffle"
+          onClick={this.shuffleAgain.bind(this, bingoOptions)}
+        >Shuffle
+        </div>
         <div className="title">RO BINGO</div>
         <div className="bingocard">
           { bingoOptions.map(function (square, idx){
