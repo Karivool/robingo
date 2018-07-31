@@ -197,14 +197,6 @@
 	      { className: "bingo" },
 	      _react2.default.createElement(
 	        "div",
-	        {
-	          className: "shuffle",
-	          onClick: this.shuffleAgain.bind(this, bingoOptions)
-	        },
-	        "Shuffle"
-	      ),
-	      _react2.default.createElement(
-	        "div",
 	        { className: "title" },
 	        "RO BINGO"
 	      ),
@@ -221,7 +213,15 @@
 	            },
 	            square
 	          );
-	        }.bind(this))
+	        }.bind(this)),
+	        _react2.default.createElement(
+	          "div",
+	          {
+	            className: "shuffle",
+	            onClick: this.shuffleAgain.bind(this, bingoOptions)
+	          },
+	          "Shuffle"
+	        )
 	      )
 	    );
 	  }

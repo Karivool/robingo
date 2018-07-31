@@ -145,11 +145,6 @@ let bingoCard = React.createClass({
 
     return (
       <div className="bingo">
-        <div
-          className="shuffle"
-          onClick={this.shuffleAgain.bind(this, bingoOptions)}
-        >Shuffle
-        </div>
         <div className="title">RO BINGO</div>
         <div className="bingocard">
           { bingoOptions.map(function (square, idx){
@@ -161,6 +156,11 @@ let bingoCard = React.createClass({
             </p>
           }.bind(this))
         }
+        <div
+        className="shuffle"
+        onClick={this.shuffleAgain.bind(this, bingoOptions)}
+        >Shuffle
+        </div>
         </div>
       </div>
     );
