@@ -48,6 +48,7 @@
   color: aquamarine;
   float: left;
   text-align: center;
+  line-height: 24px;
   cursor: pointer;
   overflow-wrap: break-word;
 
