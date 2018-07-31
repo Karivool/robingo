@@ -66,11 +66,20 @@
 
 	    return {
 	      bingoSquares: [],
-	      squareCount: 0,
+	      squareCount: this.getSquareCount(),
 	      bingoOptions: this.shuffleCheck(options),
 	      bingoValues: this.setCheck(),
 	      isBingo: false
 	    };
+	  },
+	  getSquareCount: function getSquareCount() {
+	    var squareCount = JSON.parse(localStorage.getItem('squareCount'));
+	    if (squareCount == null) {
+	      squareCount = 0;
+	    } else {
+	      squareCount = parseInt(squareCount);
+	    }
+	    return squareCount;
 	  },
 	  setCheck: function setCheck(val) {
 	    var checkVals = JSON.parse(localStorage.getItem('checkedVals'));
@@ -100,8 +109,9 @@
 	    this.shuffle(arr);
 	    var vals = this.setMultipleFalse(false);
 	    this.setState({
-	      bingoOptions: arr, bingoValues: vals
+	      bingoOptions: arr, bingoValues: vals, squareCount: 0
 	    });
+	    localStorage.setItem('squareCount', 0);
 	    return arr;
 	  },
 	  setMultipleFalse: function setMultipleFalse(val) {
@@ -124,6 +134,7 @@
 	        squareCount: this.state.squareCount -= 1
 	      });
 	    }
+	    localStorage.setItem('squareCount', this.state.squareCount);
 	    if (this.state.squareCount >= 5) {
 	      this.setState({
 	        isBingo: this.bingoCheck()
@@ -138,9 +149,9 @@
 	    var isBingo = false;
 
 	    isBingo = this.rowChecker(isBingo, 0, 5, 1, 4);
-	    isBingo = this.rowChecker(isBingo, 0, 5, 5, 4);
-	    isBingo = this.rowChecker(isBingo, 0, 5, 6, 0);
-	    isBingo = this.rowChecker(isBingo, 4, 5, 4, 0);
+	    // isBingo = this.rowChecker(isBingo, 0, 5, 5, 4);
+	    // isBingo = this.rowChecker(isBingo, 0, 5, 6, 4);
+	    // isBingo = this.rowChecker(isBingo, 4, 5, 4, 4);
 
 	    return isBingo;
 	  },
@@ -149,7 +160,9 @@
 	    var trueCount = 0;
 	    while (rep >= 0) {
 	      for (var i = idx; i < range; i += increment) {
-	        debugger;
+	        if (sqVal[i] === true) {
+	          trueCount += 1;
+	        }
 	      }
 	      rep -= 1;
 	    }

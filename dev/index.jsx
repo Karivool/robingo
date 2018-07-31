@@ -11,11 +11,21 @@ let bingoCard = React.createClass({
 
     return {
       bingoSquares: [],
-      squareCount: 0,
+      squareCount: this.getSquareCount(),
       bingoOptions: this.shuffleCheck(options),
       bingoValues: this.setCheck(),
       isBingo: false,
     };
+  },
+
+  getSquareCount () {
+    let squareCount = JSON.parse(localStorage.getItem('squareCount'));
+    if (squareCount == null) {
+      squareCount = 0;
+    } else {
+      squareCount = parseInt(squareCount);
+    }
+    return squareCount;
   },
 
   setCheck(val) {
@@ -47,8 +57,9 @@ let bingoCard = React.createClass({
     this.shuffle(arr);
     let vals = this.setMultipleFalse(false);
     this.setState({
-      bingoOptions: arr, bingoValues: vals
+      bingoOptions: arr, bingoValues: vals, squareCount: 0
     });
+    localStorage.setItem('squareCount', 0);
     return arr;
   },
 
@@ -73,6 +84,7 @@ let bingoCard = React.createClass({
         squareCount: this.state.squareCount -= 1
       });
     }
+    localStorage.setItem('squareCount', this.state.squareCount);
     if (this.state.squareCount >= 5) {
       this.setState({
         isBingo: this.bingoCheck()
@@ -88,9 +100,9 @@ let bingoCard = React.createClass({
     let isBingo = false;
 
     isBingo = this.rowChecker(isBingo, 0, 5, 1, 4);
-    isBingo = this.rowChecker(isBingo, 0, 5, 5, 4);
-    isBingo = this.rowChecker(isBingo, 0, 5, 6, 0);
-    isBingo = this.rowChecker(isBingo, 4, 5, 4, 0);
+    // isBingo = this.rowChecker(isBingo, 0, 5, 5, 4);
+    // isBingo = this.rowChecker(isBingo, 0, 5, 6, 4);
+    // isBingo = this.rowChecker(isBingo, 4, 5, 4, 4);
 
     return isBingo;
   },
@@ -100,7 +112,9 @@ let bingoCard = React.createClass({
     let trueCount = 0;
     while (rep >= 0) {
       for (let i = idx; i < range; i += increment) {
-        debugger
+        if (sqVal[i] === true) {
+          trueCount += 1;
+        }
       }
       rep -= 1;
     }
