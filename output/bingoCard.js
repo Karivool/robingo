@@ -197,30 +197,38 @@
 	      { className: "bingo" },
 	      _react2.default.createElement(
 	        "div",
-	        { className: "title" },
-	        "RO BINGO"
-	      ),
-	      _react2.default.createElement(
-	        "div",
 	        { className: "bingocard" },
-	        bingoOptions.map(function (square, idx) {
-	          return _react2.default.createElement(
-	            "p",
-	            {
-	              key: "square-" + idx,
-	              className: bingoValues[idx] === true ? "bingocard-selected" : "bingocard-square",
-	              onClick: this.squareClicked.bind(this, idx)
-	            },
-	            square
-	          );
-	        }.bind(this)),
 	        _react2.default.createElement(
 	          "div",
-	          {
-	            className: "shuffle",
-	            onClick: this.shuffleAgain.bind(this, bingoOptions)
-	          },
-	          "Shuffle"
+	          { className: "header-grid" },
+	          _react2.default.createElement(
+	            "div",
+	            {
+	              className: "shuffle",
+	              onClick: this.shuffleAgain.bind(this, bingoOptions)
+	            },
+	            "Shuffle"
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            { className: "title" },
+	            "RO BINGO"
+	          )
+	        ),
+	        _react2.default.createElement(
+	          "div",
+	          { className: "squares-grid" },
+	          bingoOptions.map(function (square, idx) {
+	            return _react2.default.createElement(
+	              "p",
+	              {
+	                key: "square-" + idx,
+	                className: bingoValues[idx] === true ? "bingocard-selected" : "bingocard-square",
+	                onClick: this.squareClicked.bind(this, idx)
+	              },
+	              square
+	            );
+	          }.bind(this))
 	        )
 	      )
 	    );

@@ -145,22 +145,26 @@ let bingoCard = React.createClass({
 
     return (
       <div className="bingo">
-        <div className="title">RO BINGO</div>
-        <div className="bingocard">
-          { bingoOptions.map(function (square, idx){
-            return <p
-              key={"square-" + idx}
-              className={bingoValues[idx] === true ? "bingocard-selected" : "bingocard-square"}
-              onClick={this.squareClicked.bind(this, idx)}
-              >{square}
-            </p>
-          }.bind(this))
-        }
-        <div
-        className="shuffle"
-        onClick={this.shuffleAgain.bind(this, bingoOptions)}
-        >Shuffle
-        </div>
+          <div className="bingocard">
+            <div className="header-grid">
+              <div
+                className="shuffle"
+                onClick={this.shuffleAgain.bind(this, bingoOptions)}
+                >Shuffle
+              </div>
+              <div className="title">RO BINGO</div>
+          </div>
+          <div className="squares-grid">
+            { bingoOptions.map(function (square, idx){
+              return <p
+                key={"square-" + idx}
+                className={bingoValues[idx] === true ? "bingocard-selected" : "bingocard-square"}
+                onClick={this.squareClicked.bind(this, idx)}
+                >{square}
+                </p>
+              }.bind(this))
+            }
+          </div>
         </div>
       </div>
     );
