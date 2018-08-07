@@ -112,9 +112,11 @@
 }
 
 .sliding-background {
-  background: url("../rainbow2.jpg") repeat-x;
-  height: 50px;
+  background: url("../rainbow.jpg") repeat-x;
+  min-height: 705px;
   width: 5076px;
+  z-index: -1;
+  position: fixed;
   animation: slide 60s linear infinite;
 }
 
