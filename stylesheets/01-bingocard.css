@@ -113,7 +113,7 @@
 
 .sliding-background {
   background: url("../rainbow.jpg") repeat-x;
-  min-height: 705px;
+  height: 100%;
   width: 5076px;
   z-index: -1;
   position: fixed;
