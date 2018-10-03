@@ -105,7 +105,9 @@
 	    localStorage.setItem('setSquares', JSON.stringify(arr));
 	    return arr;
 	  },
-	  shuffleAgain: function shuffleAgain(arr) {
+	  shuffleAgain: function shuffleAgain(options) {
+	    var arr = this.shuffleCheck(options);
+
 	    this.shuffle(arr);
 	    var vals = this.setMultipleFalse(false);
 	    this.setState({
@@ -205,7 +207,7 @@
 	            "div",
 	            {
 	              className: "shuffle",
-	              onClick: this.shuffleAgain.bind(this, bingoOptions)
+	              onClick: this.shuffleAgain.bind(this, Default)
 	            },
 	            "Shuffle"
 	          ),

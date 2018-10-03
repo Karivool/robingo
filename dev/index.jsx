@@ -53,7 +53,9 @@ let bingoCard = React.createClass({
     return arr;
   },
 
-  shuffleAgain(arr) {
+  shuffleAgain(options) {
+    let arr = this.shuffleCheck(options);
+    
     this.shuffle(arr);
     let vals = this.setMultipleFalse(false);
     this.setState({
@@ -149,7 +151,7 @@ let bingoCard = React.createClass({
             <div className="header-grid">
               <div
                 className="shuffle"
-                onClick={this.shuffleAgain.bind(this, bingoOptions)}
+                onClick={this.shuffleAgain.bind(this, Default)}
                 >Shuffle
               </div>
               <div className="title">RO BINGO</div>
