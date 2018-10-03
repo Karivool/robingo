@@ -54,7 +54,7 @@ let bingoCard = React.createClass({
   },
 
   shuffleAgain(options) {
-    let arr = this.shuffleCheck(options);
+    let arr = this.shuffle(options);
     
     this.shuffle(arr);
     let vals = this.setMultipleFalse(false);

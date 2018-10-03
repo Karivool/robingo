@@ -106,7 +106,7 @@
 	    return arr;
 	  },
 	  shuffleAgain: function shuffleAgain(options) {
-	    var arr = this.shuffleCheck(options);
+	    var arr = this.shuffle(options);
 
 	    this.shuffle(arr);
 	    var vals = this.setMultipleFalse(false);
